@@ -1,0 +1,19 @@
+# Site settings
+title: "Ridam"
+email: "rexridam@gmail.com"
+description: "Welcome to my portfolio!"
+baseurl: "" # the subpath of your site, e.g. /blog/
+url: "https://ridam.it/" # the base hostname & protocol for your site
+
+twitter_username: "Midrax"
+github_username: "Midrax"
+linkedin_username: "in/sadman-sakib-rahman-405b4b155/"
+steam_username: "theridam"
+facebook_username: "ridam.d.grayman"
+instagram_username: "_r1d4m_"
+bitbucket_username: "%7B5fd3e600-06c6-407a-a135-55ae07a3f35c%7D"
+
+# Build settings
+markdown: kramdown
+
+theme: jekyll-theme-hacker
