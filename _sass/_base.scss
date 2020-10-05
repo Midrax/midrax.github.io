@@ -204,13 +204,6 @@ header {
         }
     }
 }
-
-.image-glitch {
-    position: relative;
-    width: 100vw;
-    height: 100vw;
-    overflow: hidden;
-  }
   
   .image-distortion {
     position: absolute;
@@ -245,15 +238,15 @@ header {
     background-blend-mode: unset;
   }
   
-  .image-glitch:hover #red {
+  .image-glitch #red {
     animation: img-glitch-red 4s infinite linear alternate-reverse both;
   }
   
-  .image-glitch:hover #cyan {
+  .image-glitch #cyan {
     animation: img-glitch-cyan 5s infinite linear alternate both;
   }
   
-  .image-glitch:hover #transparent {
+  .image-glitch #transparent {
     animation: img-glitch-transparent 4s infinite linear alternate-reverse both;
   }
   
