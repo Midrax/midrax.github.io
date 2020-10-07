@@ -24,29 +24,29 @@
         var port = ​document.getElementsByName("portfolio");​
         for (var i = 0; i < port.length; i++) 
         {
-            port[i].hidden = false;     
+            port[i].style.display = block;     
         }
-        document.getElementById("blog").hidden = true;
-        document.getElementById("cv").hidden = true;
+        document.getElementById("blog").style.display = none;   
+        document.getElementById("cv").style.display = none;   
     }
 
     function showBlog() {
-        document.getElementById("blog").hidden = false;
+        document.getElementById("blog").style.display = block;     
         var port = ​document.getElementsByName("portfolio");​
         for (var i = 0; i < port.length; i++) 
         {
-            port[i].hidden = true;     
+            port[i].style.display = none;   
         }
-        document.getElementById("cv").hidden = true;
+        document.getElementById("cv").style.display = none;   
     }
 
     function showCV() {
-        document.getElementById("cv").hidden = false;
+        document.getElementById("cv").style.display = block;     
         document.getElementById("blog").hidden = true;
         var port = ​document.getElementsByName("portfolio");​
         for (var i = 0; i < port.length; i++) 
         {
-            port[i].hidden = true;     
+            port[i].style.display = none;   
         }
     }
 </script>
