@@ -14,25 +14,39 @@
 
 <!-- Custom Scripts-->
 <script>
-    document.getElementById("showPortfolio").addEventListener("click", showPortfolio);
+    document.getElementById("showPortfolio1").addEventListener("click", showPortfolio);
+    document.getElementById("showPortfolio2").addEventListener("click", showPortfolio);
+    document.getElementById("showPortfolio3").addEventListener("click", showPortfolio);
     document.getElementById("showCV").addEventListener("click", showCV);
     document.getElementById("showBlog").addEventListener("click", showBlog);
 
     function showPortfolio() {
-        document.getElementById("portfolio").hidden = false;
+        var port = ​document.getElementsByName("portfolio");​
+        for (var i = 0; i < port.length; i++) 
+        {
+            port[i].hidden = false;     
+        }
         document.getElementById("blog").hidden = true;
         document.getElementById("cv").hidden = true;
     }
 
     function showBlog() {
         document.getElementById("blog").hidden = false;
-        document.getElementById("portfolio").hidden = true;
+        var port = ​document.getElementsByName("portfolio");​
+        for (var i = 0; i < port.length; i++) 
+        {
+            port[i].hidden = true;     
+        }
         document.getElementById("cv").hidden = true;
     }
 
     function showCV() {
         document.getElementById("cv").hidden = false;
         document.getElementById("blog").hidden = true;
-        document.getElementById("portfolio").hidden = true;
+        var port = ​document.getElementsByName("portfolio");​
+        for (var i = 0; i < port.length; i++) 
+        {
+            port[i].hidden = true;     
+        }
     }
 </script>
