@@ -23,7 +23,7 @@
     function showPortfolio() {
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
-            document.getElementsByName("portfolio")[i].style.display = block;     
+            document.getElementsByName("portfolio")[i].style.display = "block";     
         }
         document.getElementById("blog").style.display = none;   
         document.getElementById("cv").style.display = none;   
@@ -33,7 +33,7 @@
         document.getElementById("blog").style.display = block;     
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
-            document.getElementsByName("portfolio")[i].style.display = none;   
+            document.getElementsByName("portfolio")[i].style.display = "none";   
         }
         document.getElementById("cv").style.display = none;   
     }
@@ -43,7 +43,7 @@
         document.getElementById("blog").hidden = true;
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
-            document.getElementsByName("portfolio")[i].style.display = none;   
+            document.getElementsByName("portfolio")[i].style.display = "none";   
         }
     }
 </script>
