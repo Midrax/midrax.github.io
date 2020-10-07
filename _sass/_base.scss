@@ -238,15 +238,15 @@ header {
     background-blend-mode: unset;
   }
   
-  .image-glitch #red {
+  .image-glitch:hover #red {
     animation: img-glitch-red 4s infinite linear alternate-reverse both;
   }
   
-  .image-glitch #cyan {
+  .image-glitch:hover #cyan {
     animation: img-glitch-cyan 5s infinite linear alternate both;
   }
   
-  .image-glitch #transparent {
+  .image-glitch:hover #transparent {
     animation: img-glitch-transparent 4s infinite linear alternate-reverse both;
   }
   

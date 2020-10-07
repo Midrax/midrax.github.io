@@ -11,3 +11,28 @@
 
 <!-- Custom Theme JavaScript -->
 <script src="js/creative.js"></script>
+
+<!-- Custom Scripts-->
+<script>
+    document.getElementById("portfolio").addEventListener("click", showPortfolio);
+    document.getElementById("cv").addEventListener("click", showCV);
+    document.getElementById("blog").addEventListener("click", showBlog);
+
+    function showPortfolio() {
+        document.getElementById("portfolio").hidden = false;
+        document.getElementById("blog").hidden = true;
+        document.getElementById("cv").hidden = true;
+    }
+
+    function showBlog() {
+        document.getElementById("blog").hidden = false;
+        document.getElementById("portfolio").hidden = true;
+        document.getElementById("cv").hidden = true;
+    }
+
+    function showCV() {
+        document.getElementById("cv").hidden = false;
+        document.getElementById("blog").hidden = true;
+        document.getElementById("portfolio").hidden = true;
+    }
+</script>
