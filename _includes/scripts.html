@@ -25,22 +25,22 @@
         {
             document.getElementsByName("portfolio")[i].style.display = "block";     
         }
-        document.getElementById("blog").style.display = none;   
-        document.getElementById("cv").style.display = none;   
+        document.getElementById("blog").style.display = "none";   
+        document.getElementById("cv").style.display = "none";   
     }
 
     function showBlog() {
-        document.getElementById("blog").style.display = block;     
+        document.getElementById("blog").style.display = "block";     
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
             document.getElementsByName("portfolio")[i].style.display = "none";   
         }
-        document.getElementById("cv").style.display = none;   
+        document.getElementById("cv").style.display = "none";   
     }
 
     function showCV() {
-        document.getElementById("cv").style.display = block;     
-        document.getElementById("blog").hidden = true;
+        document.getElementById("cv").style.display = "block";     
+        document.getElementById("blog").style.display = "none";     
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
             document.getElementsByName("portfolio")[i].style.display = "none";   
