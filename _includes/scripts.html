@@ -14,20 +14,16 @@
 
 <!-- Custom Scripts-->
 <script>
-    document.getElementsByClassName("showPortfolio").array.forEach(element => {
-       element.addEventListener("click", showPortfolio); 
-    });
-    document.getElementById("showCV").addEventListener("click", showCV);
-    document.getElementById("showBlog").addEventListener("click", showBlog);
-
-    function showPortfolio() {
+    $(".showPortfolio").on('click', function(event){
         for (var i = 0; i < document.getElementsByName("portfolio").length; i++) 
         {
             document.getElementsByName("portfolio")[i].style.display = "block";     
         }
         document.getElementById("blog").style.display = "none";   
         document.getElementById("cv").style.display = "none";   
-    }
+    });
+    document.getElementById("showCV").addEventListener("click", showCV);
+    document.getElementById("showBlog").addEventListener("click", showBlog);
 
     function showBlog() {
         document.getElementById("blog").style.display = "block";     
