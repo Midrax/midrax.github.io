@@ -14,7 +14,9 @@
 
 <!-- Custom Scripts-->
 <script>
-    document.getElementsByClassName("showPortfolio").addEventListener("click", showPortfolio);
+    document.getElementsByClassName("showPortfolio").array.forEach(element => {
+       element.addEventListener("click", showPortfolio); 
+    });
     document.getElementById("showCV").addEventListener("click", showCV);
     document.getElementById("showBlog").addEventListener("click", showBlog);
 
