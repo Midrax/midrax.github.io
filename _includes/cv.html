@@ -1,96 +1,115 @@
 <div id="cv"  class="cv">
     <div class="container-fluid">
-        <div id="app">
-            <div id="toolbar">
-              <div id="pager">
-                <button data-pager="prev">prev</button>
-                <button data-pager="next">next</button>
-              </div>
-              <div id="page-mode">
-                <label>Page Mode <input type="number" value="1" min="1"/></label>
-              </div>
-            </div>
-            <div id="pdf_viewport" role="main"></div>
-          </div>
-          
-          <script src="https://unpkg.com/pdfjs-dist@latest/build/pdf.min.js"></script>
-          <script>
-            window.onload = () => {
-                initPDFViewer("../pdf/CV.pdf");
-            };
-          </script>
+        <script src="//mozilla.github.io/pdf.js/build/pdf.js"></script>
+        <h2>Here's my CV/Resume</h2>
+        <div>
+            <button id="prev">Previous</button>
+            <button id="next">Next</button>
+            &nbsp; &nbsp;
+            <span>Page: <span id="page_num"></span> / <span id="page_count"></span></span>
+        </div>
+        <canvas id="the-canvas"></canvas>
     </div>
 </div>
 <!-- PDF.JS -->
 
 <script>
-    var currentPageIndex = 0;
-    var pdfInstance = null;
-    var totalPagesCount = 0;
+    // If absolute URL from the remote server is provided, configure the CORS
+    // header on that server.
+    var url = '../pdf/CV.pdf';
 
+    // Loaded via <script> tag, create shortcut to access PDF.js exports.
     var pdfjsLib = window['pdfjs-dist/build/pdf'];
 
     // The workerSrc property shall be specified.
     pdfjsLib.GlobalWorkerOptions.workerSrc = '//mozilla.github.io/pdf.js/build/pdf.worker.js';
-    
-    window.initPDFViewer = function(pdfURL) {
-        pdfjsLib.getDocument(pdfURL).then(function(pdf) 
-        {
-            pdfInstance = pdf;
-            totalPagesCount = pdf.numPages;
-            initPager();
-            render();
-        });
-    };
 
-    const viewport = document.querySelector("#pdf_viewport");
+    var pdfDoc = null,
+        pageNum = 1,
+        pageRendering = false,
+        pageNumPending = null,
+        scale = 0.8,
+        canvas = document.getElementById('the-canvas'),
+        ctx = canvas.getContext('2d');
 
-    function render() {
-        pdfInstance.getPage(currentPageIndex + 1).then(page => {
-            viewport.innerHTML = `<div><canvas></canvas></div>`;
-            renderPage(page);
-        });
-    }
+    /**
+    * Get page info from document, resize canvas accordingly, and render page.
+    * @param num Page number.
+    */
+    function renderPage(num) {
+    pageRendering = true;
+    // Using promise to fetch the page
+    pdfDoc.getPage(num).then(function(page) {
+        var viewport = page.getViewport({scale: scale});
+        canvas.height = viewport.height;
+        canvas.width = viewport.width;
 
-    function renderPage(page) {
-        let pdfViewport = page.getViewport(1);
+        // Render PDF page into canvas context
+        var renderContext = {
+        canvasContext: ctx,
+        viewport: viewport
+        };
+        var renderTask = page.render(renderContext);
 
-        const container = viewport.children[0];
-
-        // Render at the page size scale.
-        pdfViewport = page.getViewport(container.offsetWidth / pdfViewport.width);
-        const canvas = container.children[0];
-        const context = canvas.getContext("2d");
-        canvas.height = pdfViewport.height;
-        canvas.width = pdfViewport.width;
-
-        page.render({
-            canvasContext: context,
-            viewport: pdfViewport
-        });
-    }
-
-    function onPagerButtonsClick(event) {
-        const action = event.target.getAttribute("data-pager");
-        if (action === "prev") {
-            if (currentPageIndex === 0) {
-            return;
-            }
-            currentPageIndex -= pageMode;
-            if (currentPageIndex < 0) {
-            currentPageIndex = 0;
-            }
-            render();
+        // Wait for rendering to finish
+        renderTask.promise.then(function() {
+        pageRendering = false;
+        if (pageNumPending !== null) {
+            // New page rendering is pending
+            renderPage(pageNumPending);
+            pageNumPending = null;
         }
-        if (action === "next") {
-            if (currentPageIndex === totalPagesCount - 1) {
-            return;
-            }
-            currentPageIndex += pageMode;
-            if (currentPageIndex > totalPagesCount - 1) {
-            currentPageIndex = totalPagesCount - 1;
-            }
-            render();
-        }
+        });
+    });
+
+    // Update page counters
+    document.getElementById('page_num').textContent = num;
     }
+
+    /**
+    * If another page rendering in progress, waits until the rendering is
+    * finised. Otherwise, executes rendering immediately.
+    */
+    function queueRenderPage(num) {
+    if (pageRendering) {
+        pageNumPending = num;
+    } else {
+        renderPage(num);
+    }
+    }
+
+    /**
+    * Displays previous page.
+    */
+    function onPrevPage() {
+    if (pageNum <= 1) {
+        return;
+    }
+    pageNum--;
+    queueRenderPage(pageNum);
+    }
+    document.getElementById('prev').addEventListener('click', onPrevPage);
+
+    /**
+    * Displays next page.
+    */
+    function onNextPage() {
+    if (pageNum >= pdfDoc.numPages) {
+        return;
+    }
+    pageNum++;
+    queueRenderPage(pageNum);
+    }
+    document.getElementById('next').addEventListener('click', onNextPage);
+
+    /**
+    * Asynchronously downloads PDF.
+    */
+    pdfjsLib.getDocument(url).promise.then(function(pdfDoc_) {
+    pdfDoc = pdfDoc_;
+    document.getElementById('page_count').textContent = pdfDoc.numPages;
+
+    // Initial/first page rendering
+    renderPage(pageNum);
+    });
 </script>
