@@ -1,3 +1,23 @@
+<div id="cv"  class="cv">
+    <div class="container-fluid">
+        <div id="app">
+            <div role="toolbar" id="toolbar">
+              <div id="pager">
+                <button data-pager="prev">prev</button>
+                <button data-pager="next">next</button>
+              </div>
+              <div id="page-mode">
+                <label>Page Mode <input type="number" value="1" min="1"/></label>
+              </div>
+            </div>
+            <div id="viewport-container"><div role="main" id="pdf_viewport"></div></div>
+          </div>
+          <script src="https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js"></script>
+          <script>
+            initPDFViewer("../pdf/CV.pdf");
+          </script>
+    </div>
+</div>
 <!-- PDF.JS -->
 
 <script>
@@ -9,7 +29,7 @@
         let pdfInstance = null;
         let totalPagesCount = 0;
 
-        const viewport = document.querySelector("#viewport");
+        const viewport = document.querySelector("#pdf_viewport");
         window.initPDFViewer = function(pdfURL) {
             pdfjsLib.getDocument(pdfURL).then(pdf => {
             pdfInstance = pdf;
@@ -104,24 +124,3 @@
         }
         })();
 </script>
-
-<div id="cv"  class="cv">
-    <div class="container-fluid">
-        <div id="app">
-            <div role="toolbar" id="toolbar">
-              <div id="pager">
-                <button data-pager="prev">prev</button>
-                <button data-pager="next">next</button>
-              </div>
-              <div id="page-mode">
-                <label>Page Mode <input type="number" value="1" min="1"/></label>
-              </div>
-            </div>
-            <div id="viewport-container"><div role="main" id="viewport"></div></div>
-          </div>
-          <script src="https://unpkg.com/pdfjs-dist@2.0.489/build/pdf.min.js"></script>
-          <script>
-            initPDFViewer("../pdf/CV.pdf");
-          </script>
-    </div>
-</div>
