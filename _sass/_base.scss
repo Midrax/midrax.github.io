@@ -405,6 +405,17 @@ header {
     }
 }
 
+// Modals
+
+.modal-header {
+    background-color: black;
+}
+
+.modal-title {
+    color: white;
+    text-align: center;
+}
+
 // Bootstrap Overrides
 .text-primary {
     color: $theme-primary;
