@@ -423,6 +423,10 @@ header {
     padding: 20px;
 }
 
+.modal-footer {
+    text-align: center;
+}
+
 .detail-link {
     background-color: black;
     padding: 3px;
@@ -431,6 +435,7 @@ header {
 
 .detail-label {
     font-family: system-ui;
+    color: forestgreen;
 }
 
 // Bootstrap Overrides
