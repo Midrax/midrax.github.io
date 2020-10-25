@@ -416,6 +416,13 @@ header {
     text-align: center;
 }
 
+.modal-detail {
+    border: black;
+    border-style: dashed;
+    margin-top: 20px;
+    padding: 20px;
+}
+
 // Bootstrap Overrides
 .text-primary {
     color: $theme-primary;
