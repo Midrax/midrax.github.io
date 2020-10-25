@@ -423,6 +423,11 @@ header {
     padding: 20px;
 }
 
+.detail-link {
+    background-color: black;
+    padding: 3px;
+}
+
 // Bootstrap Overrides
 .text-primary {
     color: $theme-primary;
