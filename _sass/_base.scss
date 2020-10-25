@@ -429,6 +429,10 @@ header {
     margin: 2px;
 }
 
+.detail-label {
+    font-family: system-ui;
+}
+
 // Bootstrap Overrides
 .text-primary {
     color: $theme-primary;
