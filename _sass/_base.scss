@@ -205,6 +205,13 @@ header {
     }
 }
   
+  .image-glitch {
+    position: absolute;
+    inset: 0;
+    // Clip the scaled and shifted layers before they can widen the page.
+    overflow: hidden;
+  }
+
   .image-distortion {
     position: absolute;
     top: 0;
@@ -313,7 +320,63 @@ header {
 .cv {
     display: none;
     margin-top: 50px;
+    scroll-margin-top: 70px;
     text-align: center;
+}
+
+.cv-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 35px 0 25px;
+    h2 { margin: 0; }
+    .btn-primary {
+        background-color: #28734c;
+        border-color: #28734c;
+        color: #fff;
+        &:hover, &:focus { background-color: #1d593a; border-color: #1d593a; }
+    }
+}
+
+.cv-document {
+    max-width: 900px;
+    margin: 0 auto 60px;
+    padding: 45px 50px;
+    background: #fff;
+    color: #26343c;
+    text-align: left;
+    border-top: 5px solid #28734c;
+    p, li, dd { font-family: 'Open Sans', sans-serif; font-size: 15px; line-height: 1.7; }
+    a { color: #28734c; }
+    .cv-heading {
+        padding-bottom: 20px;
+        border-bottom: 1px solid #dce3e5;
+        h1 { font-size: 36px; font-weight: 700; margin-top: 0; }
+        p { margin-bottom: 6px; }
+        .cv-role { color: #28734c; font-size: 20px; }
+    }
+    .cv-meta { color: #56636a; font-size: 13px; margin-bottom: 10px; }
+    .cv-section {
+        padding: 0;
+        margin-top: 28px;
+        h3 { color: #28734c; font-size: 18px; font-weight: 700; margin: 0 0 15px; }
+    }
+    .cv-entry {
+        margin-bottom: 20px;
+        h4 { font-size: 16px; font-weight: 700; margin: 0 0 5px; }
+        ul { padding-left: 20px; }
+        li { margin-bottom: 7px; }
+    }
+    .cv-skills {
+        dt { margin-top: 10px; }
+        dd { margin: 3px 0 0; }
+    }
+    @media (max-width: 767px) {
+        padding: 28px 22px;
+        .cv-heading h1 { font-size: 29px; }
+    }
 }
 
 #the-canvas {
